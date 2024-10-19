@@ -1,0 +1,8 @@
+.changeset
+.turbo
+apps
+build-aks
+media
+node_modules
+dist
+storybook-static

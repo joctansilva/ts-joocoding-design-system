@@ -1,0 +1,1 @@
+export * from "./jooc-ref-palette-deep-teal-tokens";

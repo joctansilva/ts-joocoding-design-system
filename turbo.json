@@ -1,0 +1,48 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["^build"]
+    },
+    "release": {
+      "dependsOn": ["^release"]
+    },
+    "release:file": {
+      "dependsOn": ["^release:file"]
+    },
+    "prepack": {
+      "cache": false,
+      "dependsOn": ["^prepack"]
+    },
+    "postpack": {
+      "cache": false,
+      "dependsOn": ["^postpack"]
+    },
+    "test": {
+      "dependsOn": []
+    },
+    "test:watch": {
+      "dependsOn": []
+    },
+    "test:ui": {
+      "dependsOn": []
+    },
+    "test:coverage": {
+      "outputs": ["coverage/**"],
+      "dependsOn": []
+    },
+    "lint": {},
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "clean": {
+      "cache": false
+    },
+    "clean:build": {
+      "cache": false
+    }
+  },
+  "globalDependencies": ["tsconfig.json"]
+}

@@ -1,0 +1,48 @@
+{
+  "name": "@joocantico/theme",
+  "version": "2.0.0-beta.5",
+  "source": "./src/index.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/es/index.js",
+  "types": "./dist/es/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/es/index.d.ts",
+      "import": "./dist/es/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./jooc-tokens.css": "./dist/jooc-tokens.css",
+    "./jooc-tailwind-tokens.css": "./dist/jooc-tailwind-tokens.css"
+  },
+  "sideEffects": false,
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "rollup -c --watch",
+    "build": "pnpm build:create-css-files && rm -rf dist && rollup -c",
+    "build:create-css-files": "pnpm create-jooc-tokens-css-file && pnpm create-jooc-tailwind-tokens-css-file",
+    "create-jooc-tokens-css-file": "tsx scripts/create-jooc-tokens-css-file.ts",
+    "create-jooc-tailwind-tokens-css-file": "tsx scripts/create-jooc-tailwind-tokens-css-file.ts",
+    "typecheck": "tsc --noEmit --composite false",
+    "lint": "eslint \"src/**/*.ts*\"",
+    "format": "prettier --write \"src/**/*.ts*\"",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "clean:build": "rm -rf .turbo && rm -rf dist",
+    "release": "pnpm build && pnpm publish --tag latest",
+    "release:file": "pnpm build && pnpm pack"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.17.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "engines": {
+    "node": "^14.18.0 || >=16.0.0"
+  }
+}
